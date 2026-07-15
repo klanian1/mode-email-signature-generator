@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mode.Inc email signature generator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="page-header">
+    <h1>Mode.Inc email signature generator</h1>
+    <p>Fill in your details, pick a concept, copy, and paste into Gmail. <br>Dark and clear versions of each.</p>
+  </header>
+
+  <main class="layout">
+
+    <section class="form-card" aria-label="Form">
+
+      <div class="field">
+        <label for="f-name">Full name *</label>
+        <input id="f-name" data-field="name" placeholder="Gaston Klanian" autocomplete="name">
+        <div class="field-error" id="err-name" hidden></div>
+      </div>
+
+      <div class="field">
+        <label for="f-title">Job title *</label>
+        <input id="f-title" data-field="title" placeholder="Head of AI" autocomplete="organization-title">
+        <div class="field-error" id="err-title" hidden></div>
+      </div>
+
+      <div class="field">
+        <label for="f-email">Email *</label>
+        <input id="f-email" data-field="email" placeholder="gaston@mode.inc" autocomplete="email" inputmode="email">
+        <div class="field-error" id="err-email" hidden></div>
+      </div>
+
+      <div class="field optional-link">
+        <label for="f-linkedin">LinkedIn URL · optional <span class="links-note"></span></label>
+        <input id="f-linkedin" data-field="linkedin" placeholder="linkedin.com/in/gaston">
+        <div class="field-error" id="err-linkedin" hidden></div>
+      </div>
+
+      <div class="field optional-link">
+        <label for="f-calendar">Calendar booking link · optional <span class="links-note"></span></label>
+        <input id="f-calendar" data-field="calendar" placeholder="cal.com/gaston">
+        <div class="field-error" id="err-calendar" hidden></div>
+      </div>
+
+      <div class="segment-group bordered">
+        <div class="segment-label">Concept</div>
+        <div class="segment-row" role="radiogroup" aria-label="Concept">
+          <button type="button" class="segment" data-concept="01">01 · Minimal</button>
+          <button type="button" class="segment" data-concept="02">02 · Mission</button>
+          <button type="button" class="segment" data-concept="03">03 · Values</button>
+        </div>
+      </div>
+
+      <div class="segment-group">
+        <div class="segment-label">Theme</div>
+        <div class="segment-row" role="radiogroup" aria-label="Theme">
+          <button type="button" class="segment" data-theme="clear">Clear</button>
+          <button type="button" class="segment" data-theme="dark">Dark</button>
+        </div>
+        <div class="segment-hint">Dark renders best in Gmail; may look off in Outlook and dark-mode clients.</div>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-row" id="copy-row">
+          <button type="button" class="btn btn-primary-dark" id="copy-rich"><span>Copy signature</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
+          <button type="button" class="btn btn-secondary" id="copy-html"><span>Copy HTML</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
+        </div>
+        <div class="field-error" id="copy-blocked" hidden>Fix the required fields above to copy.</div>
+      </div>
+
+      <div class="how-block">
+        <button type="button" class="how-toggle" id="how-toggle" aria-expanded="false">+ How to install in Gmail</button>
+        <div class="how-steps" id="how-steps" hidden>
+          <div class="how-step"><span>01</span><span>In Gmail, open the gear menu and choose See all settings.</span></div>
+          <div class="how-step"><span>02</span><span>Under General, scroll to Signature and select Create new.</span></div>
+          <div class="how-step"><span>03</span><span>Name it Mode, then paste the copied signature into the editor.</span></div>
+          <div class="how-step"><span>04</span><span>Under Signature defaults, set it for new emails and for replies.</span></div>
+          <div class="how-step"><span>05</span><span>Scroll to the bottom and Save changes.</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="preview-panel" aria-label="Preview">
+      <div class="preview-tag">Live preview · <span id="concept-tag"></span> · <span id="theme-tag"></span></div>
+      <div class="gmail-mock">
+        <div class="gmail-bar">New message</div>
+        <div class="gmail-meta">To: <span>research@frontier.ai</span></div>
+        <div class="gmail-meta">Subject: <span>Supply for the AI economy</span></div>
+        <div class="gmail-body">
+          <div class="gmail-signoff">Best,</div>
+          <div id="signature-preview"></div>
+        </div>
+      </div>
+      <div class="preview-footnote">Copies as rich text · pastes straight into Gmail&rsquo;s signature box</div>
+    </section>
+
+  </main>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

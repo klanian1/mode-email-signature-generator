@@ -1,0 +1,363 @@
+/* ============================================================
+   Mode.Inc — Email signature generator
+   Dark institutional canvas per the Mode.Inc design system:
+   black #000000 · white text · #00FF9D mint accent.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('fonts/Manrope-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --mode-ink: #000000;
+  --mode-green: #00FF9D;
+  --mode-paper-warm: #FAFAF7;
+  --mode-signal-red: #FF3B47;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --ease-mode: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 140ms;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--mode-ink);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--mode-green); }
+a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+:where(a, button, input):focus-visible {
+  outline: 2px solid var(--mode-green);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.page-header {
+  padding: clamp(28px, 5vw, 56px) clamp(20px, 4vw, 48px) 0;
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.page-header p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: #B9BDC4;
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: clamp(24px, 3vw, 48px);
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 4vw, 48px) 64px;
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: start;
+  flex: 1;
+}
+
+/* ── Form card ──────────────────────────────────────────── */
+
+.form-card {
+  background: #0A0A0A;
+  border: 1px solid #232323;
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: opacity var(--dur-fast);
+}
+
+.field label,
+.segment-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8A8F98;
+}
+
+.field input {
+  width: 100%;
+  background: #000000;
+  border: 1px solid #2E2E2E;
+  border-radius: 8px;
+  padding: 11px 12px;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: border-color var(--dur-fast);
+}
+
+.field input::placeholder { color: #565B64; }
+.field input:focus { border-color: var(--mode-green); }
+
+.field-error {
+  font-size: 12px;
+  color: var(--mode-signal-red);
+}
+
+.optional-link.links-disabled { opacity: 0.4; }
+
+/* ── Segmented controls ─────────────────────────────────── */
+
+.segment-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.segment-group.bordered {
+  border-top: 1px solid #232323;
+  padding-top: 20px;
+}
+
+.segment-row { display: flex; gap: 8px; }
+
+.segment {
+  flex: 1;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #2E2E2E;
+  color: #8A8F98;
+  border-radius: 8px;
+  padding: 11px 8px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: border-color var(--dur-fast), color var(--dur-fast);
+}
+
+.segment.selected {
+  border-color: var(--mode-green);
+  color: var(--mode-green);
+}
+
+.segment-hint {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #8A8F98;
+}
+
+/* ── Copy actions ───────────────────────────────────────── */
+
+.copy-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid #232323;
+  padding-top: 20px;
+}
+
+.copy-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  transition: opacity var(--dur-fast);
+}
+
+.copy-row.invalid { opacity: 0.55; }
+
+/* Design-system Button: pill, mandatory trailing arrow */
+.btn {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 999px;
+  height: 44px;
+  padding: 0 26px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-mode),
+              background-color var(--dur-fast) var(--ease-mode),
+              border-color var(--dur-fast),
+              color var(--dur-fast);
+}
+
+.btn-arrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.btn-primary-dark {
+  background: #FFFFFF;
+  color: #000000;
+}
+.btn-primary-dark:hover {
+  background: var(--mode-paper-warm);
+  transform: scale(1.02);
+}
+.btn-primary-dark:active {
+  transform: scale(0.985);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: #3A3A42;
+}
+.btn-secondary:hover { border-color: #FFFFFF; }
+
+/* ── How-to accordion ───────────────────────────────────── */
+
+.how-block {
+  border-top: 1px solid #232323;
+  padding-top: 16px;
+}
+
+.how-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--mode-green);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.how-step {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #C7CAD1;
+}
+
+.how-step span:first-child {
+  font-family: var(--font-mono);
+  color: var(--mode-green);
+  font-size: 12px;
+  padding-top: 2px;
+}
+
+/* ── Preview panel ──────────────────────────────────────── */
+
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky;
+  top: 24px;
+}
+
+.preview-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mode-green);
+}
+
+.gmail-mock {
+  background: #FAFAF7;
+  border: 1px solid #2A2A2A;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.gmail-bar {
+  background: #F2F2EC;
+  border-bottom: 1px solid #E4E4DD;
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.gmail-meta {
+  border-bottom: 1px solid #ECECE5;
+  padding: 12px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #9AA0A6;
+}
+
+.gmail-meta span { color: #333333; }
+
+.gmail-body { padding: 22px 20px 30px; }
+
+.gmail-signoff {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #333333;
+  margin: 0 0 16px;
+}
+
+.preview-footnote {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #565B64;
+}
