@@ -8,9 +8,9 @@ export const CONFIG = {
   COMPANY_LABEL: 'mode.inc',
   MISSION: 'The supply for the AI economy. Built and owned alongside everyday people.',
   VALUES: ['ACCOUNTABLE', 'ACTION-DRIVEN', 'CURIOUS', 'CARING', 'THOROUGH'],
-  ACCOLADE_COMPANY: 'Mode, Inc.',
-  ACCOLADE_AWARD: '#1 Fastest-Growing Company',
-  ACCOLADE_EVENT: '2023 Deloitte Technology Fast 500™',
+  ACCOLADE_COMPANY: 'Mode.Inc',
+  ACCOLADE_AWARD: '#1 Fastest-Growing Software Company',
+  ACCOLADE_EVENT: "on 2023 Deloitte's Fast 500",
   // Hosted <img> wordmarks (design-system logo, rasterized to PNG). If empty,
   // falls back to the text wordmark (bold "m0de.inc", green zero, green underline).
   // Replace with a public CDN URL before company-wide rollout so the image
@@ -145,8 +145,8 @@ function td(content, styles) {
 // Deloitte accolade: muted line, only the award itself carries weight.
 function accoladeLine(t, config) {
   return (
-    escapeHtml(config.ACCOLADE_COMPANY) + ' <strong style="color:' + t.text + ';">' +
-    escapeHtml(config.ACCOLADE_AWARD) + '</strong>, ' + escapeHtml(config.ACCOLADE_EVENT)
+    escapeHtml(config.ACCOLADE_COMPANY) + '&nbsp;&middot;&nbsp;<strong style="color:' + t.text + ';">' +
+    escapeHtml(config.ACCOLADE_AWARD) + '</strong> ' + escapeHtml(config.ACCOLADE_EVENT)
   );
 }
 
