@@ -6,7 +6,7 @@ import { CONFIG, validate, generateSignature } from './signature.js';
 
 const state = {
   name: '', title: '', email: '', linkedin: '', calendar: '',
-  concept: '02', theme: 'clear',
+  concept: '02', theme: 'clear', logoPos: 'top',
   touched: {}, attempted: false,
   copied: '', howOpen: false,
 };
@@ -15,6 +15,8 @@ const CONCEPT_TAGS = {
   '01': 'Concept 01 · Super minimal',
   '02': 'Concept 02 · Minimal with mission',
   '03': 'Concept 03 · Company values',
+  '04': 'Concept 04 · Values + accolade',
+  '05': 'Concept 05 · Mission + accolade',
 };
 
 const PREVIEW_DEFAULTS = { name: 'Gaston Klanian', title: 'Head of AI', email: 'gaston@mode.inc' };
@@ -34,6 +36,7 @@ function config() {
   return Object.assign({}, CONFIG, {
     LOGO_URL_CLEAR: pick('logoClear', CONFIG.LOGO_URL_CLEAR),
     LOGO_URL_DARK: pick('logoDark', CONFIG.LOGO_URL_DARK),
+    LOGO_POSITION: state.logoPos,
   });
 }
 
@@ -170,6 +173,10 @@ function render() {
     btn.classList.toggle('selected', btn.dataset.theme === state.theme);
     btn.setAttribute('aria-checked', String(btn.dataset.theme === state.theme));
   }
+  for (const btn of $$('[data-logo]')) {
+    btn.classList.toggle('selected', btn.dataset.logo === state.logoPos);
+    btn.setAttribute('aria-checked', String(btn.dataset.logo === state.logoPos));
+  }
 
   $('#copy-row').classList.toggle('invalid', !valid);
   $('#copy-blocked').hidden = !(state.attempted && !valid);
@@ -181,7 +188,8 @@ function render() {
   $('#how-steps').hidden = !state.howOpen;
 
   $('#concept-tag').textContent = CONCEPT_TAGS[state.concept];
-  $('#theme-tag').textContent = state.theme === 'dark' ? 'Dark' : 'Clear';
+  $('#theme-tag').textContent = (state.theme === 'dark' ? 'Dark' : 'Clear') +
+    (state.logoPos === 'bottom' ? ' · Logo bottom' : '');
   $('#signature-preview').innerHTML = generateSignature(previewData(), state.concept, state.theme, config());
 }
 
@@ -205,6 +213,9 @@ for (const btn of $$('[data-concept]')) {
 }
 for (const btn of $$('[data-theme]')) {
   btn.addEventListener('click', () => { state.theme = btn.dataset.theme; render(); });
+}
+for (const btn of $$('[data-logo]')) {
+  btn.addEventListener('click', () => { state.logoPos = btn.dataset.logo; render(); });
 }
 
 $('#copy-rich').addEventListener('click', copyRich);

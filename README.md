@@ -25,6 +25,11 @@ Then open http://localhost:8907.
 | 01 · Minimal | Wordmark, name, title, email, mode.inc (no optional links) |
 | 02 · Mission | One-line name · title, links row, mission line |
 | 03 · Values | Name, title, links row, values row (mint accent rail on dark) |
+| 04 · Values + Deloitte | One-line name · title, links, values row, accolade line |
+| 05 · Mission + Deloitte | One-line name · title, links, mission line, accolade line |
+
+Every concept also has a **logo position** toggle: the wordmark either opens
+the signature (top, default) or closes it (bottom).
 
 Each concept ships in **Clear** (light, violet accent per brand rule: never
 mint on white) and **Dark** (black card, mint accent) themes.
