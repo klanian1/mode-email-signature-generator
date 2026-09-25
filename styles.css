@@ -167,13 +167,14 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 .segment-row { display: flex; gap: 8px; }
 
-/* Five concepts: three across, then the two wider Deloitte variants. */
+/* Six concepts: three across, the two wider Deloitte variants, then 06 full width. */
 .segment-row.segment-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
 .segment-row.segment-grid .segment { grid-column: span 2; }
 .segment-row.segment-grid .segment:nth-child(n+4) { grid-column: span 3; }
+.segment-row.segment-grid .segment:nth-child(6) { grid-column: span 6; }
 
 .segment {
   flex: 1;

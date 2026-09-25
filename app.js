@@ -17,6 +17,7 @@ const CONCEPT_TAGS = {
   '03': 'Concept 03 · Company values',
   '04': 'Concept 04 · Values + accolade',
   '05': 'Concept 05 · Mission + accolade',
+  '06': 'Concept 06 · Mission + accolade NA',
 };
 
 const PREVIEW_DEFAULTS = { name: 'Gaston Klanian', title: 'Head of AI', email: 'gaston@mode.inc' };
@@ -165,15 +166,15 @@ function render() {
     wrap.querySelector('.links-note').textContent = linksDisabled ? '· not on concept 01' : '';
   }
 
-  for (const btn of $$('[data-concept]')) {
+  for (const btn of $$('button[data-concept]')) {
     btn.classList.toggle('selected', btn.dataset.concept === state.concept);
     btn.setAttribute('aria-checked', String(btn.dataset.concept === state.concept));
   }
-  for (const btn of $$('[data-theme]')) {
+  for (const btn of $$('button[data-theme]')) {
     btn.classList.toggle('selected', btn.dataset.theme === state.theme);
     btn.setAttribute('aria-checked', String(btn.dataset.theme === state.theme));
   }
-  for (const btn of $$('[data-logo]')) {
+  for (const btn of $$('button[data-logo]')) {
     btn.classList.toggle('selected', btn.dataset.logo === state.logoPos);
     btn.setAttribute('aria-checked', String(btn.dataset.logo === state.logoPos));
   }
@@ -208,13 +209,13 @@ for (const input of $$('input[data-field]')) {
   });
 }
 
-for (const btn of $$('[data-concept]')) {
+for (const btn of $$('button[data-concept]')) {
   btn.addEventListener('click', () => { state.concept = btn.dataset.concept; render(); });
 }
-for (const btn of $$('[data-theme]')) {
+for (const btn of $$('button[data-theme]')) {
   btn.addEventListener('click', () => { state.theme = btn.dataset.theme; render(); });
 }
-for (const btn of $$('[data-logo]')) {
+for (const btn of $$('button[data-logo]')) {
   btn.addEventListener('click', () => { state.logoPos = btn.dataset.logo; render(); });
 }
 

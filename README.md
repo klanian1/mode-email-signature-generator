@@ -27,6 +27,7 @@ Then open http://localhost:8907.
 | 03 · Values | Name, title, links row, values row (mint accent rail on dark) |
 | 04 · Values + Deloitte | One-line name · title, links, values row, accolade line |
 | 05 · Mission + Deloitte | One-line name · title, links, mission line, accolade line |
+| 06 · Mission + Deloitte NA | Same as 05, accolade reworded: "#1 Fastest-Growing Software Company in North America, 2023 Deloitte Technology Fast 500™" |
 
 Every concept also has a **logo position** toggle: the wordmark either opens
 the signature (top, default) or closes it (bottom).

@@ -11,6 +11,9 @@ export const CONFIG = {
   ACCOLADE_COMPANY: 'Mode.Inc',
   ACCOLADE_AWARD: '#1 Fastest-Growing Software Company',
   ACCOLADE_EVENT: "on 2023 Deloitte's Fast 500",
+  // Concept 06: same award, regional framing, no company prefix.
+  ACCOLADE_06_AWARD: '#1 Fastest-Growing Software Company',
+  ACCOLADE_06_EVENT: 'in North America, 2023 Deloitte Technology Fast 500\u2122',
   // Hosted <img> wordmarks (design-system logo, rasterized to PNG). If empty,
   // falls back to the text wordmark (bold "m0de.inc", green zero, green underline).
   // Replace with a public CDN URL before company-wide rollout so the image
@@ -150,6 +153,14 @@ function accoladeLine(t, config) {
   );
 }
 
+// Concept 06 accolade: same treatment, reworded without the company prefix.
+function accoladeLine06(t, config) {
+  return (
+    '<strong style="color:' + t.text + ';">' + escapeHtml(config.ACCOLADE_06_AWARD) + '</strong> ' +
+    escapeHtml(config.ACCOLADE_06_EVENT)
+  );
+}
+
 function valuesRow(t, config) {
   return td(
     config.VALUES.map(escapeHtml).join('&nbsp;&middot;&nbsp;'),
@@ -194,7 +205,7 @@ export function generateSignature(data, concept, theme, config) {
     rows.push(td(linksRow(d, t, cfg), 'font-size:13px;line-height:1.5;color:' + t.muted + ';padding:0 0 14px 0;'));
     rows.push(valuesRow(t, cfg));
     rows.push(td(accoladeLine(t, cfg), 'font-size:11px;line-height:1.5;color:' + t.muted + ';padding:10px 0 0 0;'));
-  } else if (concept === '05') {
+  } else if (concept === '05' || concept === '06') {
     rows.push(td(
       '<strong>' + name + '</strong><span style="color:' + t.muted + ';">&nbsp;&middot;&nbsp;' + title + '</span>',
       'font-size:14px;line-height:1.4;color:' + t.text + ';padding:0 0 10px 0;'
@@ -202,7 +213,7 @@ export function generateSignature(data, concept, theme, config) {
     rows.push(td(linksRow(d, t, cfg), 'font-size:13px;line-height:1.5;color:' + t.muted + ';padding:0 0 10px 0;'));
     rows.push(td(escapeHtml(cfg.MISSION), 'font-size:12px;line-height:1.5;color:' + t.muted + ';padding:0 0 12px 0;'));
     rows.push(td(
-      accoladeLine(t, cfg),
+      concept === '06' ? accoladeLine06(t, cfg) : accoladeLine(t, cfg),
       'border-top:1px solid ' + t.divider + ';font-size:11px;line-height:1.5;color:' + t.muted + ';padding:12px 0 0 0;'
     ));
   } else {
@@ -227,7 +238,7 @@ export function generateSignature(data, concept, theme, config) {
 
   // Concepts carrying brand statements (values/mission footers) get the
   // accent rail: mint on the dark card, violet on clear.
-  const railed = concept === '03' || concept === '04' || concept === '05';
+  const railed = concept === '03' || concept === '04' || concept === '05' || concept === '06';
 
   if (theme === 'dark') {
     if (railed) {
